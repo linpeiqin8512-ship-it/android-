@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="30dp"
+    android:background="#F5F5F5"
+    tools:targetApi="o">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新用户注册"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:id="@+id/et_reg_username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="请输入账号 (必填)"
+        android:layout_marginBottom="15dp"
+        android:importantForAutofill="no"
+        android:autofillHints=""
+        android:inputType="textVisiblePassword" />
+
+    <EditText
+        android:id="@+id/et_reg_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/edit_text"
+        android:inputType="textPassword"
+        android:hint="请输入密码 (必填)"
+        android:layout_marginBottom="15dp"
+        android:importantForAutofill="no"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/et_reg_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="请输入昵称 (如: 爸爸/乖女儿)"
+        android:layout_marginBottom="15dp"
+        android:importantForAutofill="no"
+        android:autofillHints=""
+        android:inputType="textVisiblePassword" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择角色："
+        android:textColor="#666666"
+        android:layout_marginBottom="5dp"/>
+
+    <RadioGroup
+        android:id="@+id/rg_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+
+        <RadioButton
+            android:id="@+id/rb_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="父母 (家长)"
+            android:checked="true"
+            android:layout_marginRight="20dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小孩"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="确 认 注 册"
+        android:textSize="18sp"
+        android:backgroundTint="#4CAF50"/>
+
+</LinearLayout>

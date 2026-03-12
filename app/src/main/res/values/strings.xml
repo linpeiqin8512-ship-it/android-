@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Jizhangsystem</string>
+    <string-array name="categories">
+        <item>餐饮美食</item>
+        <item>交通出行</item>
+        <item>服饰美容</item>
+        <item>生活日用</item>
+        <item>休闲娱乐</item>
+        <item>医疗保健</item>
+        <item>住房物业</item>
+        <item>工资收入</item>
+        <item>其他</item>
+    </string-array>
+</resources>

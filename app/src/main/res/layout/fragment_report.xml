@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FA">
+
+    <!-- 1. 顶部切换开关 (周/月/年) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp">
+        <RadioGroup
+            android:id="@+id/rg_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:gravity="center">
+            <RadioButton android:id="@+id/rb_week" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:button="@null" android:background="@drawable/tab_selector_left" android:gravity="center" android:text="周" android:checked="true" android:textColor="@drawable/tab_text_color"/>
+            <RadioButton android:id="@+id/rb_month" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:button="@null" android:background="@drawable/tab_selector_center" android:gravity="center" android:text="月" android:textColor="@drawable/tab_text_color"/>
+            <RadioButton android:id="@+id/rb_year" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:button="@null" android:background="@drawable/tab_selector_right" android:gravity="center" android:text="年" android:textColor="@drawable/tab_text_color"/>
+        </RadioGroup>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ★ 修改后的时间选择区域（增加了导出按钮） ★ -->
+    <LinearLayout
+        android:id="@+id/layout_date_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#FFFFFF">
+
+        <!-- 占位，保证日期文字居中 -->
+        <View android:layout_width="40dp" android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/tv_report_date_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2025年12月 ▽"
+            android:textColor="#2196F3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="5dp"/>
+
+        <!-- ★ 新增：导出按钮（使用系统原生下载/保存图标） ★ -->
+        <ImageButton
+            android:id="@+id/btn_export"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_save"
+            android:contentDescription="导出账单" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_chart_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="支出报表"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:layout_marginBottom="15dp"/>
+
+            <!-- 饼图 -->
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chart_pie"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginBottom="25dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"/>
+
+            <!-- 柱状图 -->
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/chart_bar"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginBottom="25dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"/>
+
+            <!-- 折线图 -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart_line"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginBottom="40dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

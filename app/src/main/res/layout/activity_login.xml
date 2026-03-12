@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="30dp"
+    android:background="#F5F5F5"
+    tools:targetApi="o">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="家庭记账本"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"/>
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="请输入账号"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="20dp"
+        android:importantForAutofill="no"
+        android:autofillHints=""
+        android:inputType="textVisiblePassword" /> <!-- 核心修改：既保证可见，又杀掉历史浮窗 -->
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="请输入密码"
+        android:paddingLeft="10dp"
+        android:inputType="textPassword"
+        android:layout_marginBottom="40dp"
+        android:importantForAutofill="no"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="立即登录"
+        android:textSize="18sp"
+        android:backgroundTint="#2196F3"/>
+
+    <TextView
+        android:id="@+id/tv_go_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有账号？点我注册"
+        android:textColor="#2196F3"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"/>
+
+</LinearLayout>

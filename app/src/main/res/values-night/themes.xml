@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Jizhangsystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- ↓↓↓↓↓↓↓↓↓ 新增这两行 ↓↓↓↓↓↓↓↓↓ -->
+        <!-- 1. 把状态栏背景设为透明（或者跟随背景色） -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- 2. 关键：告诉系统，状态栏要是“亮色模式”，这样文字和图标就会自动变成【黑色】 -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
+
+    </style>
+
+    <style name="Theme.Jizhangsystem" parent="Base.Theme.Jizhangsystem" />
+</resources>
