@@ -1,15 +1,48 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Jizhangsystem" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <!-- ↓↓↓↓↓↓↓↓↓ 新增这两行 ↓↓↓↓↓↓↓↓↓ -->
-        <!-- 1. 把状态栏背景设为透明（或者跟随背景色） -->
+    <!-- Base application theme using Material Design 3 -->
+    <style name="Base.Theme.Jizhangsystem" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Color scheme wiring -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorPrimaryContainer">@color/color_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/color_on_primary_container</item>
+
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorOnSecondary">@color/color_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/color_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/color_on_secondary_container</item>
+
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+        <item name="colorError">@color/color_error</item>
+
+        <!-- Domain-specific aliases -->
+        <item name="expenseColor">@color/color_expense</item>
+        <item name="incomeColor">@color/color_income</item>
+
+        <!-- Status bar & system bars -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- 2. 关键：告诉系统，状态栏要是“亮色模式”，这样文字和图标就会自动变成【黑色】 -->
+        <item name="android:navigationBarColor">@color/color_background</item>
         <item name="android:windowLightStatusBar">true</item>
-        <!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
+        <item name="android:windowLightNavigationBar">true</item>
 
+        <!-- Default CardView / MaterialCardView appearance -->
+        <item name="materialCardViewStyle">@style/Widget.Jizhangsystem.CardView</item>
+        <item name="cardViewStyle">@style/Widget.Jizhangsystem.CardView</item>
     </style>
 
+    <!-- Application theme entry point -->
     <style name="Theme.Jizhangsystem" parent="Base.Theme.Jizhangsystem" />
+
+    <!-- Global card style: 16dp corner radius + light shadow -->
+    <style name="Widget.Jizhangsystem.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/color_card_background</item>
+    </style>
+
 </resources>

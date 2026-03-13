@@ -10,7 +10,7 @@ public class JDBCUtils
     private static final String USER = "sa";
     private static final String PASSWORD = "123456";
     private static final String IP = "15.tcp.cpolar.top";
-    private static final String PORT = "14477";
+    private static final String PORT = "11573";
     private static final String DB_NAME = "AccountBookDB";
     public static Connection getConn() {
         Connection conn = null;

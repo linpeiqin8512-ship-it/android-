@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
+    android:background="@color/color_background"
     android:fitsSystemWindows="true">
     <!-- ★ 这一行最关键：它会自动给状态栏留出位置，不会再挡住头像和时间 ★ -->
 
@@ -14,7 +14,7 @@
         android:layout_height="56dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:background="#F5F5F5">
+        android:background="@color/color_background">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_avatar_container"
@@ -52,13 +52,13 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="#FFFFFF"
-        app:elevation="20dp"
-        app:menu="@menu/bottom_nav_menu"
+        android:layout_height="72dp"
+        android:background="@color/color_bottom_nav_bg"
+        app:elevation="8dp"
+        style="@style/Widget.Jizhangsystem.BottomNavigationView"
+        app:menu="@menu/main_bottom_nav_menu"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="26dp"
-        app:itemIconTint="@color/design_default_color_primary"
-        app:itemTextColor="@color/design_default_color_primary" />
+        app:itemRippleColor="@color/color_primary_container" />
 
 </LinearLayout>

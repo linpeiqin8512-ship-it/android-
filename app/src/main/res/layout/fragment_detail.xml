@@ -12,19 +12,18 @@
         android:layout_margin="12dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
-        app:cardBackgroundColor="#2196F3">
+        app:cardBackgroundColor="@android:color/transparent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@drawable/bg_balance_gradient">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:id="@+id/rl_header">
 
                 <Spinner
                     android:id="@+id/spinner_family_filter"
@@ -34,22 +33,23 @@
                     android:spinnerMode="dropdown"
                     android:visibility="gone"/>
 
-                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
-
                 <TextView
                     android:id="@+id/tv_month_filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:text="2025年12月 ▽"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:padding="4dp"/>
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_balance_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/rl_header"
                 android:text="本月结余"
                 android:textColor="#CCFFFFFF"
                 android:textSize="12sp"
@@ -59,17 +59,26 @@
                 android:id="@+id/tv_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tv_balance_title"
                 android:text="¥ 0.00"
                 android:textColor="#FFFFFF"
                 android:textSize="32sp"
                 android:textStyle="bold"/>
 
             <!-- 分隔线 -->
-            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#4DFFFFFF" android:layout_marginTop="12dp" android:layout_marginBottom="12dp"/>
+            <View
+                android:id="@+id/view_divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/tv_balance"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#4DFFFFFF" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/view_divider"
                 android:orientation="horizontal">
 
                 <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
@@ -93,7 +102,7 @@
                     <TextView android:id="@+id/tv_surplus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.00" android:textColor="#FFFFFF" android:textSize="14sp" android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <!-- 列表 -->

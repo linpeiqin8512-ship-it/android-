@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +26,7 @@ import com.example.jizhangsystem.ui.DetailFragment;
 import com.example.jizhangsystem.ui.LoginActivity;
 import com.example.jizhangsystem.ui.ReportFragment;
 import com.example.jizhangsystem.ui.MineFragment;
+import com.example.jizhangsystem.ui.UserMenuBottomSheetDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -73,10 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
             if (selected != null) {
                 getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.fragment_slide_in_right, R.anim.fragment_fade_out)
                         .replace(R.id.fragment_container, selected)
                         .commit();
             }
+            animateBottomNavItem(bottomNav, id, id == R.id.nav_report);
             return true;
+        });
+
+        bottomNav.setOnItemReselectedListener(item -> {
+            int id = item.getItemId();
+            animateBottomNavItem(bottomNav, id, id == R.id.nav_report);
         });
 
         if (savedInstanceState == null) {
@@ -86,37 +97,54 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void animateBottomNavItem(BottomNavigationView bottomNav, int itemId, boolean bounce) {
+        View itemView = bottomNav.findViewById(itemId);
+        if (itemView == null) return;
+
+        itemView.animate().cancel();
+        itemView.setScaleX(1f);
+        itemView.setScaleY(1f);
+        itemView.setTranslationY(0f);
+
+        if (bounce) {
+            ObjectAnimator up = ObjectAnimator.ofFloat(itemView, View.TRANSLATION_Y, 0f, -6f, 0f);
+            up.setDuration(220);
+
+            ObjectAnimator sx = ObjectAnimator.ofFloat(itemView, View.SCALE_X, 1f, 1.08f, 1f);
+            sx.setDuration(220);
+            ObjectAnimator sy = ObjectAnimator.ofFloat(itemView, View.SCALE_Y, 1f, 1.08f, 1f);
+            sy.setDuration(220);
+
+            AnimatorSet set = new AnimatorSet();
+            set.playTogether(up, sx, sy);
+            set.start();
+        } else {
+            itemView.animate()
+                    .scaleX(1.05f)
+                    .scaleY(1.05f)
+                    .setDuration(120)
+                    .withEndAction(() -> itemView.animate().scaleX(1f).scaleY(1f).setDuration(120).start())
+                    .start();
+        }
+    }
+
     /* 根据角色动态生成的快速操作菜单*/
     private void showUserMenu() {
         currentNickname = getSharedPreferences("userInfo", MODE_PRIVATE).getString("name", "用户");
 
-        List<String> menuItems = new ArrayList<>();
-        menuItems.add("更换头像");
-        menuItems.add("更改昵称");
-
-        // 根据身份添加特殊功能
-        if (currentUserRole == 0) {
-            menuItems.add("【管理】成员账号重置"); // 管理员：网管模式
-        } else if (currentUserRole == 1) {
-            menuItems.add("【管理】添加子女账号"); // 家长
-        } else if (currentUserRole == 2) {
-            menuItems.add("【管理】绑定父母账号"); // 子女
-        }
-
-        menuItems.add("退出登录");
-
-        final String[] items = menuItems.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle("你好，" + currentNickname)
-                .setItems(items, (dialog, which) -> {
-                    String choice = items[which];
-                    if (choice.equals("更换头像")) openGallery();
-                    else if (choice.equals("更改昵称")) showChangeNicknameDialog();
-                    else if (choice.equals("【管理】成员账号重置")) showAdminUserList();
-                    else if (choice.equals("【管理】添加子女账号")) showAddChildDialog();
-                    else if (choice.equals("【管理】绑定父母账号")) showBindParentDialog();
-                    else if (choice.equals("退出登录")) showLogoutConfirmDialog();
-                }).show();
+        UserMenuBottomSheetDialogFragment.show(
+                getSupportFragmentManager(),
+                currentNickname,
+                currentUserRole,
+                actionId -> {
+                    if (UserMenuBottomSheetDialogFragment.ACTION_CHANGE_AVATAR.equals(actionId)) openGallery();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_CHANGE_NICKNAME.equals(actionId)) showChangeNicknameDialog();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_ADMIN_RESET_USERS.equals(actionId)) showAdminUserList();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_PARENT_ADD_CHILD.equals(actionId)) showAddChildDialog();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_CHILD_BIND_PARENT.equals(actionId)) showBindParentDialog();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_LOGOUT.equals(actionId)) showLogoutConfirmDialog();
+                }
+        );
     }
 
     // 1. 管理员逻辑：获取全员列表并重置

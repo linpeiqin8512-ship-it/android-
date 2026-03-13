@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Jizhangsystem.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item_color</item>
+        <item name="itemTextColor">@color/bottom_nav_item_color</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Jizhangsystem.BottomNavIndicator</item>
+    </style>
+
+    <style name="Widget.Jizhangsystem.BottomNavIndicator" parent="">
+        <item name="android:background">@drawable/bg_bottom_nav_indicator</item>
+    </style>
+
+    <style name="ThemeOverlay.Jizhangsystem.UserMenuBottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Jizhangsystem.UserMenuBottomSheet</item>
+    </style>
+
+    <style name="Widget.Jizhangsystem.UserMenuBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Jizhangsystem.SheetTopCorners</item>
+        <item name="android:backgroundTint">@color/color_sheet_bg</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Jizhangsystem.SheetTopCorners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+</resources>

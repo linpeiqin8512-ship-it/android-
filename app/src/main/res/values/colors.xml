@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Core brand colors (Material Design 3 style palette) -->
+    <color name="color_primary">#2196F3</color>
+    <color name="color_on_primary">#FFFFFFFF</color>
+    <color name="color_primary_container">#E3F2FD</color>
+    <color name="color_on_primary_container">#0D47A1</color>
+
+    <color name="color_secondary">#455A64</color>
+    <color name="color_on_secondary">#FFFFFF</color>
+    <color name="color_secondary_container">#CFD8DC</color>
+    <color name="color_on_secondary_container">#263238</color>
+
+    <!-- Surface / background -->
+    <color name="color_background">#F5F7FA</color>
+    <color name="color_on_background">#1A1A1A</color>
+    <color name="color_surface">#FFFFFFFF</color>
+    <color name="color_on_surface">#333333</color>
+    <color name="color_outline">#DDDDDD</color>
+    <color name="color_on_surface_variant">#6B6B6B</color>
+
+    <!-- Status colors -->
+    <color name="color_error">#FF5252</color>
+    <color name="color_on_error">#FFFFFF</color>
+
+    <!-- Domain specific colors -->
+    <color name="color_expense">#FF5252</color>
+    <color name="color_income">#4CAF50</color>
+
+    <!-- Card defaults -->
+    <color name="color_card_background">#FFFFFFFF</color>
+    <color name="color_card_shadow">#33000000</color>
+
+    <!-- Login & balance gradients -->
+    <color name="color_login_gradient_start">#E3F2FD</color>
+    <color name="color_login_gradient_end">#FCE4EC</color>
+    <color name="color_balance_gradient_start">#0D47A1</color>
+    <color name="color_balance_gradient_end">#2196F3</color>
+
+    <!-- Bottom navigation -->
+    <color name="color_bottom_nav_bg">#F0F7FF</color>
+    <color name="color_bottom_nav_indicator">#1A2196F3</color>
+
+    <!-- Bottom sheet -->
+    <color name="color_sheet_bg">#F2FFFFFF</color>
+    <color name="color_divider">#1F000000</color>
+
+    <!-- Icon colors -->
+    <color name="color_icon_default">#444444</color>
 </resources>
