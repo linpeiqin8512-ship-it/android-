@@ -27,6 +27,7 @@ import com.example.jizhangsystem.ui.LoginActivity;
 import com.example.jizhangsystem.ui.ReportFragment;
 import com.example.jizhangsystem.ui.MineFragment;
 import com.example.jizhangsystem.ui.UserMenuBottomSheetDialogFragment;
+import com.example.jizhangsystem.utils.JDBCUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        JDBCUtils.init(getApplicationContext());
+        String configUrl = JDBCUtils.getConfigUrl();
+        if (configUrl == null || configUrl.isEmpty()) {
+            JDBCUtils.setConfigUrl(JDBCUtils.DEFAULT_CONFIG_URL);
+            configUrl = JDBCUtils.DEFAULT_CONFIG_URL;
+        }
+        JDBCUtils.fetchConfigFromUrlAsync(configUrl, null, null);
 
         userDao = new UserDao();
 
@@ -142,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     else if (UserMenuBottomSheetDialogFragment.ACTION_ADMIN_RESET_USERS.equals(actionId)) showAdminUserList();
                     else if (UserMenuBottomSheetDialogFragment.ACTION_PARENT_ADD_CHILD.equals(actionId)) showAddChildDialog();
                     else if (UserMenuBottomSheetDialogFragment.ACTION_CHILD_BIND_PARENT.equals(actionId)) showBindParentDialog();
+                    else if (UserMenuBottomSheetDialogFragment.ACTION_DB_CONFIG.equals(actionId)) showDbConfigDialog();
                     else if (UserMenuBottomSheetDialogFragment.ACTION_LOGOUT.equals(actionId)) showLogoutConfirmDialog();
                 }
         );
@@ -247,6 +257,50 @@ public class MainActivity extends AppCompatActivity {
                         }).start();
                     }
                 }).show();
+    }
+
+    private void showDbConfigDialog() {
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(50, 40, 50, 20);
+        final EditText et = new EditText(this);
+        et.setHint("配置 URL（如 Gist Raw 地址）");
+        et.setText(JDBCUtils.getConfigUrl() != null ? JDBCUtils.getConfigUrl() : "");
+        et.setPadding(24, 24, 24, 24);
+        layout.addView(et);
+        new AlertDialog.Builder(this)
+                .setTitle("配置数据库(开发)")
+                .setView(layout)
+                .setPositiveButton("拉取并保存", (d, w) -> {
+                    String url = et.getText().toString().trim();
+                    if (url.isEmpty()) {
+                        Toast.makeText(this, "请填写配置 URL", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    JDBCUtils.setConfigUrl(url);
+                    JDBCUtils.fetchConfigFromUrlAsync(url,
+                            () -> Toast.makeText(this, "配置拉取成功，下次连接将使用新地址", Toast.LENGTH_SHORT).show(),
+                            () -> Toast.makeText(this, "拉取失败，请检查 URL 与网络", Toast.LENGTH_SHORT).show());
+                })
+                .setNeutralButton("清除并重新拉取", (d, w) -> {
+                    JDBCUtils.clearSavedConfig();
+                    String url = JDBCUtils.getConfigUrl();
+                    if (url == null || url.isEmpty()) url = et.getText().toString().trim();
+                    if (url.isEmpty()) {
+                        Toast.makeText(this, "请先填写配置 URL 再拉取", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    JDBCUtils.setConfigUrl(url);
+                    JDBCUtils.fetchConfigFromUrlAsync(url,
+                            () -> Toast.makeText(this, "已清除旧配置并拉取成功", Toast.LENGTH_SHORT).show(),
+                            () -> Toast.makeText(this, "拉取失败，请检查 Gist 与网络", Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("仅保存 URL", (d, w) -> {
+                    String url = et.getText().toString().trim();
+                    JDBCUtils.setConfigUrl(url);
+                    Toast.makeText(this, "已保存，下次启动将自动拉取", Toast.LENGTH_SHORT).show();
+                })
+                .show();
     }
 
     private void showLogoutConfirmDialog() {

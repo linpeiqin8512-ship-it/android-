@@ -31,6 +31,7 @@ public class UserMenuBottomSheetDialogFragment extends BottomSheetDialogFragment
     public static final String ACTION_ADMIN_RESET_USERS = "admin_reset_users";
     public static final String ACTION_PARENT_ADD_CHILD = "parent_add_child";
     public static final String ACTION_CHILD_BIND_PARENT = "child_bind_parent";
+    public static final String ACTION_DB_CONFIG = "db_config";
     public static final String ACTION_LOGOUT = "logout";
 
     private static final String ARG_NICKNAME = "arg_nickname";
@@ -100,6 +101,7 @@ public class UserMenuBottomSheetDialogFragment extends BottomSheetDialogFragment
             list.add(new MenuAction(ACTION_CHILD_BIND_PARENT, "【管理】绑定父母账号", R.drawable.ic_action_link));
         }
 
+        list.add(new MenuAction(ACTION_DB_CONFIG, "配置数据库(开发)", R.drawable.ic_action_link));
         list.add(new MenuAction(ACTION_LOGOUT, "退出登录", R.drawable.ic_action_logout));
         return list;
     }

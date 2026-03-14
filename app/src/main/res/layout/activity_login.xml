@@ -123,6 +123,16 @@
             android:textColor="@color/color_primary"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/tv_refresh_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:text="配置不对？点此重新获取"
+            android:textColor="#6B6B6B"
+            android:textSize="13sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
